@@ -8,7 +8,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"reflect"
 	"sort"
 	"strings"
 	"time"
@@ -17,7 +16,7 @@ import (
 const (
 	OnlineUrl   = "https://newopen.imdada.cn"
 	NoOnlineUrl = "http://newopen.qa.imdada.cn"
-	Timeout     = 8000  // 超时时间 3000ms
+	Timeout     = 5000  // 超时时间 5000ms
 	Version     = "1.0" // api版本
 	Format      = "json"
 )
@@ -64,24 +63,6 @@ func (b *Base) Result() (string, error) {
 		return "", err
 	}
 	return string(result), nil
-}
-
-// formatRequestData 格式化请求参数
-func formatRequestData(requestData map[string]interface{}) map[string][]string {
-	var (
-		urlValues = make(map[string][]string)
-		temp      string
-	)
-	for key, val := range requestData {
-		if reflect.TypeOf(val).String() == "map[string]interface {}" {
-			marshal, _ := json.Marshal(val)
-			temp = string(marshal)
-		} else {
-			temp = cast.ToString(val)
-		}
-		urlValues[key] = []string{temp}
-	}
-	return urlValues
 }
 
 // WithRequestParams ...
