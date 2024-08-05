@@ -1,4 +1,4 @@
-package fn
+package v3
 
 const (
 	GET_TOKEN_URL                      = "/openapi/token"                        // 获取token接口

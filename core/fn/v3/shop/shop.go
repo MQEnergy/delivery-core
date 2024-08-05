@@ -1,18 +1,18 @@
 package shop
 
 import (
-	"github.com/MQEnergy/delivery-core/core/fn"
-	fn2 "github.com/MQEnergy/delivery-core/routers/fn"
+	"github.com/MQEnergy/delivery-core/core/fn/v3"
+	fn2 "github.com/MQEnergy/delivery-core/routers/fn/v3"
 )
 
 type Shop struct {
-	Base *fn.Base
+	Base *v3.Base
 }
 
 // New is the constructor for Shop.
 func New(appKey, appSecret string, online bool) *Shop {
 	return &Shop{
-		Base: fn.New(appKey, appSecret, online),
+		Base: v3.New(appKey, appSecret, online),
 	}
 }
 

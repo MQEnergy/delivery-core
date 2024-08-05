@@ -1,16 +1,16 @@
 package order
 
 import (
-	"github.com/MQEnergy/delivery-core/core/fn"
-	fn2 "github.com/MQEnergy/delivery-core/routers/fn"
+	"github.com/MQEnergy/delivery-core/core/fn/v3"
+	fn2 "github.com/MQEnergy/delivery-core/routers/fn/v3"
 )
 
 type Order struct {
-	Base *fn.Base
+	Base *v3.Base
 }
 
 func New(appKey, appSecret string, online bool) *Order {
-	base := fn.New(appKey, appSecret, online)
+	base := v3.New(appKey, appSecret, online)
 	return &Order{
 		Base: base,
 	}
