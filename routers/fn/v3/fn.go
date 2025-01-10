@@ -22,5 +22,4 @@ const (
 	CHAIN_STORE_RANGE_URL              = "/v3/invoke/chainstoreRange"            // 门店配送范围接口
 	GET_AVAILABLE_EXTRA_GOODS_LIST_URL = "/v3/invoke/getAvailableExtraGoodsList" // 获取增值服务
 	NEW_UPLOAD_FILE_URL                = "/v3/invoke/newUploadFile"              // 文件上传接口
-	GET_FILE_INFO_URL                  = "/v3/invoke/getFileInfo"                // 文件信息查询接口
 )

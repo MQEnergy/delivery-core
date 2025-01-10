@@ -3,53 +3,28 @@ package main
 import (
 	"fmt"
 	v3 "github.com/MQEnergy/delivery-core/core/fn/v3"
-	v32 "github.com/MQEnergy/delivery-core/routers/fn/v3"
-	"github.com/spf13/cast"
-	"io/ioutil"
-	"strings"
-	"time"
+	"github.com/MQEnergy/delivery-core/core/fn/v3/shop"
 )
 
 func main() {
-	o := v3.New("", "", false)
-	sign, err := o.GenerateSign(map[string]string{
-		"app_id":      "",
-		"code":        "",
-		"merchant_id": "",
-		"grant_type":  "authorization_code",
-		"timestamp":   cast.ToString(time.Now().UnixMilli()),
-	})
+	// 获取token
+	b := v3.New("", "", "4434923", false)
+	// 获取token 沙箱环境code为空
+	result, err := b.GetToken(v3.SignParams{Code: ""})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(sign, o.Host+v32.GET_TOKEN_URL)
-	response, err := o.Client.Post(o.Host+v32.GET_TOKEN_URL, "application/json", strings.NewReader(`{
-		 "grant_type": "authorization_code",
-		 "app_id": "",
-		 "code": "",
-		 "merchant_id": "",
-		 "signature": "`+sign+`",
-		 "timestamp": "`+cast.ToString(time.Now().UnixNano()/int64(time.Millisecond))+`"
-	}`))
-	if err != nil {
-		panic(err)
-	}
-	defer response.Body.Close()
-	body1, _ := ioutil.ReadAll(response.Body)
-	fmt.Println(string(body1))
+	fmt.Println(result)
 
-	resp, err := o.Client.Post(o.Host+v32.CHAIN_STORE_QUERY_URL, "application/json", strings.NewReader(`{
-		"app_id": "",
-		"merchant_id": "",
-		"timestamp": "`+cast.ToString(time.Now().UnixNano())+`",
-		"business_data": "{\"merchant_id\":\"4434923\",\"chain_store_code\":\"Z3ZB\"}",
-		"signature": "`+sign+`",
-		"access_token": ""
-	}`))
+	// 获取门店信息
+	o := shop.New("", "", "4434923", false)
+	storeQuery, err := o.ChainStoreQuery(map[string]interface{}{
+		"out_shop_code":  "testorder001",
+		"chain_store_id": 205318427,
+	}, result.AccessToken)
 	if err != nil {
 		panic(err)
 	}
-	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
+	fmt.Println(storeQuery)
+	return
 }
