@@ -9,7 +9,6 @@ import (
 	"github.com/spf13/cast"
 	"github.com/tidwall/gjson"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 	"reflect"
 	"sort"
@@ -73,7 +72,6 @@ func New(appID, appSecret, merchantID string, online bool) *Base {
 		AppSecret:  appSecret,
 		MerchantID: merchantID,
 	}
-	rand.Seed(time.Now().UnixNano())
 	if online {
 		base.Host = OnlineUrl
 	} else {
