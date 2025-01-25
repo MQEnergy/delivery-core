@@ -1,17 +1,17 @@
 package order
 
 import (
-	"github.com/MQEnergy/delivery-core/core/uu"
-	uu2 "github.com/MQEnergy/delivery-core/routers/uu"
+	"github.com/MQEnergy/delivery-core/core/uu/v2"
+	uu2 "github.com/MQEnergy/delivery-core/routers/uu/v2"
 )
 
 type Order struct {
-	Base *uu.Base
+	Base *v2.Base
 }
 
 func New(appID, appKey, openID string, online bool) *Order {
 	return &Order{
-		Base: uu.New(appID, appKey, openID, online),
+		Base: v2.New(appID, appKey, openID, online),
 	}
 }
 

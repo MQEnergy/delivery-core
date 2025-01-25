@@ -1,4 +1,4 @@
-package uu
+package v2
 
 import (
 	"crypto/md5"

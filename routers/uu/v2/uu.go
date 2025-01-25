@@ -1,4 +1,4 @@
-package uu
+package v2
 
 const (
 	ORDER_FEE_URL          = "/v2_0/getorderprice.ashx"     // 计算订单价格

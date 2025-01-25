@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/MQEnergy/delivery-core/core/uu/order"
+	"github.com/MQEnergy/delivery-core/core/uu/v2/order"
 )
 
 func main() {
