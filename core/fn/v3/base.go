@@ -340,7 +340,7 @@ func (b *Base) GetToken(params SignParams) (*TokenBizDataInfo, error) {
 
 // RefreshToken returns token visit: https://open.ele.me/documents/openApi/603
 func (b *Base) RefreshToken(params SignParams) (*TokenBizDataInfo, error) {
-	result, err := b.WithTokenReqParams(fn3.GET_TOKEN_URL, params).Result()
+	result, err := b.WithRefreshTokenReqParams(fn3.GET_TOKEN_URL, params).Result()
 	if err != nil {
 		return nil, err
 	}
