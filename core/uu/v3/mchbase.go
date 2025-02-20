@@ -33,6 +33,7 @@ func NewBase(appID, appKey string, merchantID uint64, storeNo string, online boo
 		AppKey:     appKey,
 		MerchantID: merchantID,
 		StoreNo:    storeNo,
+		Online:     online,
 	}
 	if online {
 		base.Host = OnlineUrl

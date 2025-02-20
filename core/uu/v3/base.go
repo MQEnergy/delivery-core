@@ -38,6 +38,7 @@ func New(appID, appKey, openID string, online bool) *Base {
 		AppID:  appID,
 		AppKey: appKey,
 		OpenID: openID,
+		Online: online,
 	}
 	if online {
 		base.Host = OnlineUrl
